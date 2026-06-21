@@ -3,9 +3,9 @@
 set -e
 #Credit to Meghthedev for the initial script 
 
-export PROJECTFOLDER="Lineage20"
-export PROJECTID="36"
-export REPO_INIT="repo init -u https://github.com/accupara/los20.git -b lineage-20.0 --git-lfs --depth=1"
+export PROJECTFOLDER="crdroid"
+export PROJECTID="85"
+export REPO_INIT="repo init -u https://github.com/crdroidandroid/android.git -b 11.0 --git-lfs --depth=1"
 export BUILD_DIFFERENT_ROM="$REPO_INIT" # Change this if you'd like to build something else
 
 # Destroy Old Clones
@@ -33,8 +33,11 @@ crave run --no-patch -- "rm -rf .repo/local_manifests && \
 # Init Manifest
 $BUILD_DIFFERENT_ROM && \
 
-# Clone local_manifests repository
-git clone https://github.com/sounddrill31/local_manifests --depth 1 -b lineage-oxygen .repo/local_manifests && \
+# clone source
+
+git clone https://github.com/udyneos-prjkt/android_device_oppo_A37 -b lineage-18.1 device/oppo/A37
+git clone https://github.com/UdyneO2/rb-vendor_oppo vendor/oppo/A37
+git clone https://github.com/UdyneO2/kernel_oppo_A37-old kernel/oppo/msm8939
 
  # Sync the repositories
  /opt/crave/resync.sh && \ 
@@ -42,11 +45,8 @@ git clone https://github.com/sounddrill31/local_manifests --depth 1 -b lineage-o
 # Set up build environment
 source build/envsetup.sh && \
 
-# Lunch configuration
-lunch lineage_oxygen-userdebug && \
-
 # Build the ROM
-mka bacon"
+brunch A37"
 
 cd ..
 
