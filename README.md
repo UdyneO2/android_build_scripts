@@ -9,4 +9,4 @@ or if you have one running,
 ```tmux a -t <session number>```
 
 ## Pull and Run this script
-```$ curl -sf https://raw.githubusercontent.com/sounddrill31/android_build_scripts/lineage-oxygen/build.sh | bash```
+```$ curl -sf https://raw.githubusercontent.com/UdyneO2/android_build_scripts/refs/heads/lineage-oxygen/build.sh | bash```
