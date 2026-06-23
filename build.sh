@@ -7,7 +7,6 @@ export PROJECTID="85"
 export REPO_INIT="repo init -u https://github.com/crdroidandroid/android.git -b 11.0 --git-lfs --depth=1"
 export BUILD_DIFFERENT_ROM="$REPO_INIT" # Change this if you'd like to build something else
 
-craveclone(){
 # Destroy Old Clones
 if (grep -q "$PROJECTFOLDER" <(crave clone list --json | jq -r '.clones[]."Cloned At"')) || [ "${DCDEVSPACE}" == "1" ]; then   
    crave clone destroy -y /crave-devspaces/$PROJECTFOLDER || echo "Error removing $PROJECTFOLDER"
@@ -25,9 +24,7 @@ else
    echo "Running $REPO_INIT"
    $REPO_INIT
 fi
-}
 
-#craveclone
 
 # Run inside foss.crave.io devspace
 # Remove existing local_manifests
@@ -53,13 +50,13 @@ source build/envsetup.sh && \
 lunch lineage_A37-userdebug
 mka bacon"
 
-# cd ..
+cd ..
 
-# # Clean up
-# if grep -q "$PROJECTFOLDER" <(crave clone list --json | jq -r '.clones[]."Cloned At"') || [ "${DCDEVSPACE}" == "1" ]; then
-  # crave clone destroy -y /crave-devspaces/$PROJECTFOLDER || echo "Error removing $PROJECTFOLDER"
-# else  
-  # rm -rf $PROJECTFOLDER || true
-# fi
-# Upload zips to Telegram
+# Clean up
+if grep -q "$PROJECTFOLDER" <(crave clone list --json | jq -r '.clones[]."Cloned At"') || [ "${DCDEVSPACE}" == "1" ]; then
+  crave clone destroy -y /crave-devspaces/$PROJECTFOLDER || echo "Error removing $PROJECTFOLDER"
+else  
+  rm -rf $PROJECTFOLDER || true
+fi
+Upload zips to Telegram
 /opt/crave/telegram/upload.sh
