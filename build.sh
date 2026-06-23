@@ -28,8 +28,10 @@ fi
 
 # Run inside foss.crave.io devspace
 # Remove existing local_manifests
-cd $PROJECTFOLDER
-crave run --no-patch -- "rm -rf .repo/local_manifests && \
+if [ -d $PROJECTFOLDER ]; then
+ cd $PROJECTFOLDER
+else
+ crave run --no-patch -- "rm -rf .repo/local_manifests && \
 
 # Init Manifest
 $BUILD_DIFFERENT_ROM && \
@@ -49,7 +51,7 @@ source build/envsetup.sh && \
 # Build the ROM
 lunch lineage_A37-userdebug
 mka bacon"
-
+fi
 cd ..
 
 # Clean up
