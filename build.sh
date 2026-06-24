@@ -38,7 +38,7 @@ $BUILD_DIFFERENT_ROM && \
 
 # clone source
 rm -rf device/oppo/A37 vendor/oppo kernel/oppo/msm8939
-git clone https://github.com/udyneos-prjkt/android_device_oppo_A37 -b lineage-18.1 device/oppo/A37
+git clone https://github.com/udyneos-prjkt/android_device_oppo_A37 -b crdroid device/oppo/A37
 git clone https://github.com/UdyneO2/rb-vendor_oppo vendor/oppo --depth=1
 git clone https://github.com/UdyneO2/kernel_oppo_A37-old kernel/oppo/msm8939 --depth=1
 
